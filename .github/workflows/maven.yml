@@ -20,12 +20,21 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
-    - name: Build and run scheduler
+    - name: Build with Maven
+      run: mvn clean install
+
+    - name: Create /tmp/commands.txt file
       run: |
-        mvn clean install
+        echo "# One-time command - Run at 11:00 on 14 May 2025" > /tmp/commands.txt
+        echo "0 11 14 5 2025 echo \$(date) && echo \"At Amex we do whats right\"" >> /tmp/commands.txt
+        echo "# Recurring every 1 minute" >> /tmp/commands.txt
+        echo "*/1 echo \$(date) && echo \"Amex motto is Don't live life without it\"" >> /tmp/commands.txt
+
+    - name: Run Scheduler for 1 minute
+      run: |
         java -cp target/amex-schedule-0.1.jar com.amex.scheduler.AmexScheduler & sleep 65 && kill $!
 
-    - name: Archive Sample Output
+    - name: Upload sample-output.txt
       if: always()
       uses: actions/upload-artifact@v4
       with:
