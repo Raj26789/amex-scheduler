@@ -31,6 +31,8 @@ It supports:
 git clone https://github.com/<your-username>/amex-schedule.git
 cd amex-schedule
 
+---
+
 2️⃣ Create the Command File
 ✅ On Linux/macOS:
 Create a file at /tmp/commands.txt
@@ -45,22 +47,35 @@ Add the following content to it:
 
 # Recurring every 1 minute
 */1 echo $(date) && echo "Amex motto is Don't live life without it"
+
+---
+
 3️⃣ Build the Project
 
 mvn clean install
+
+---
+
 4️⃣ Run the Scheduler
 
 java -cp target/amex-schedule-0.1.jar com.amex.scheduler.AmexScheduler
+
+---
+
 📂 Output
 All command outputs are logged in:
 
 sample-output.txt
+
+---
+
 ⚙️ CI/CD with GitHub Actions
 This project includes a basic GitHub Actions workflow (.github/workflows/maven.yml) that:
 
-Builds the project on push
+1. Builds the project on push
+2. Verifies successful compilation and tests (if any)
 
-Verifies successful compilation and tests (if any)
+---
 
 👤 Author
 Rajkumar N
