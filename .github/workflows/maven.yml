@@ -30,9 +30,9 @@ jobs:
         echo "# Recurring every 1 minute" >> /tmp/commands.txt
         echo "*/1 echo \$(date) && echo \"Amex motto is Don't live life without it\"" >> /tmp/commands.txt
 
-    - name: Run Scheduler for 1 minute
+    - name: Run Scheduler for 5 minute
       run: |
-        java -cp target/amex-schedule-0.1.jar com.amex.scheduler.AmexScheduler & sleep 65 && kill $!
+        java -cp target/amex-schedule-0.1.jar com.amex.scheduler.AmexScheduler & sleep 300 && kill $!
 
     - name: Upload sample-output.txt
       if: always()
