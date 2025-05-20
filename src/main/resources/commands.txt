@@ -1,0 +1,4 @@
+# One-sided command -Run at 11:00 on 14 May 2025
+1 11 14 5 2025 "echo ¨Gdate¨G && echo At Amex we do whats right"
+# Recurring every 1 minute
+*/1 cmd /c "echo ¨Gdate¨G ¨Gtime¨G && echo Amex motto is Don't live life without it"
