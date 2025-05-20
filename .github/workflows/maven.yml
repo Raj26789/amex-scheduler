@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,12 +20,14 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
-    - name: Build with Maven
-      run: mvn clean install
+    - name: Build and run scheduler
+      run: |
+        mvn clean install
+        java -cp target/amex-schedule-0.1.jar com.amex.scheduler.AmexScheduler & sleep 65 && kill $!
 
-    - name: Archive Build Output
-      if: success()
+    - name: Archive Sample Output
+      if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: build-artifacts
-        path: target/
+        name: sample-output
+        path: sample-output.txt
